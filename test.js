@@ -24,8 +24,16 @@ describe("Todo servisi", () => {
     })
 
     test("Yanlış model gönderilirse 400 dönmelidir", () => {
-        const badmodel1= null;
-        const badmodel2 = { };
+        //const badmodel1= null;
+        //const badmodel2 = {};
+
+        const badmodel1 =  {
+            "todo": null
+        };
+
+        const badmodel2 =  {
+            "todo": {}
+        };
 
         const status1 = addTodo(badmodel1);
         const status2 = addTodo(badmodel2);
