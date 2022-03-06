@@ -24,9 +24,6 @@ describe("Todo servisi", () => {
     })
 
     test("Yanlış model gönderilirse 400 dönmelidir", () => {
-        //const badmodel1= null;
-        //const badmodel2 = {};
-
         const badmodel1 =  {
             "todo": null
         };
@@ -35,9 +32,13 @@ describe("Todo servisi", () => {
             "todo": {}
         };
 
+        const badmodel3 = null;
+
         const status1 = addTodo(badmodel1);
         const status2 = addTodo(badmodel2);
+        const status3 = addTodo(badmodel3);
         expect(status1).toEqual("400");
         expect(status2).toEqual("400");
+        expect(status3).toEqual("400");
     })
 })
