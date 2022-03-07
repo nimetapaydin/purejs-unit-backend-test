@@ -1,7 +1,7 @@
 // todo servisi
 // {"todo": "Bir şeyler yap"} diye veri yüklendiğinde veritabına eklesin
 // todolar getirildiğinde bunun gibi sonuçları dönsün [{"todo": "Bir şeyler yap"}]
-import { addTodo } from './index';
+import { addTodo, getTodos } from './index';
 
 describe("Todo servisi", () => {
     test("todo eklendiğinde 200 dönmelidir", () => {
@@ -40,5 +40,11 @@ describe("Todo servisi", () => {
         expect(status1).toEqual("400");
         expect(status2).toEqual("400");
         expect(status3).toEqual("400");
+    })
+
+    test("todolar getirildiğinde dizi dönmelidir", () => {
+        const todolar = getTodos();
+        expect(todolar).toEqual([]);
+
     })
 })

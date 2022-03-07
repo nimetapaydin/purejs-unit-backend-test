@@ -5,3 +5,7 @@ export function addTodo(addModel) {
     return "200";
 }
 
+export function getTodos(){
+    return []
+}
+
