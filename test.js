@@ -44,7 +44,16 @@ describe("Todo servisi", () => {
 
     test("todolar getirildiğinde dizi dönmelidir", () => {
         const todolar = getTodos();
-        expect(todolar).toEqual([]);
+
+        expect(todolar instanceof Array).toBeTruthy();
 
     })
+
+    test("Eğer bir todo gelirse ilk objesi todo içermelidir", () => {
+        const todolistesi = getTodos();
+        const ilktodo = todolistesi[0];
+
+        expect(ilktodo.todo).toBeTruthy()
+    })
+
 })
