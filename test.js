@@ -44,7 +44,6 @@ describe("Todo servisi", () => {
 
     test("todolar getirildiğinde dizi dönmelidir", () => {
         const todolar = getTodos();
-
         expect(todolar instanceof Array).toBeTruthy();
 
     })
@@ -54,6 +53,10 @@ describe("Todo servisi", () => {
         const ilktodo = todolistesi[0];
 
         expect(ilktodo.todo).toBeTruthy()
+    })
+
+    test("Todo silindiğinde 200 dönmelidir", () => {
+        
     })
 
 })
