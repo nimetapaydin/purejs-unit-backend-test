@@ -56,7 +56,26 @@ describe("Todo servisi", () => {
     })
 
     test("Todo silindiğinde 200 dönmelidir", () => {
-        
+        const newTodo = {
+            "todo": "Yeni Todo"
+        };
+
+        const status = addTodo(newTodo);
+        const deletelist = newTodo.deletelist;
+
+        expect(status).toEqual("200");
     })
+
+    test("Boş Todo silinmek istendiğinde 400 dönmelidir", () => {
+        const newTodo = {
+            "todo": ""
+        };
+
+        const status = addTodo(newTodo);
+        const deletelist = newTodo.deletelist;
+
+        expect(status).toEqual("400");
+    })
+
 
 })
