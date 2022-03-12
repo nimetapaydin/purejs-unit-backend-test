@@ -77,20 +77,5 @@ describe("Todo servisi", () => {
         expect(status).toEqual("400");
     })
 
-    test("Yanlış model silinmek istenirse 400 dönmelidir", () => {
-        const badmodel1 =  {
-            "todo": null
-        };
-
-        const badmodel2 =  {
-            "todo": {}
-        };
-
-        const deletelist = badmodel1.deletelist;
-        const deletelist1 = badmodel2.deletelist;
-        expect(deletelist).toEqual("400");
-        expect(deletelist1).toEqual("400");
-        
-    })
 
 })
