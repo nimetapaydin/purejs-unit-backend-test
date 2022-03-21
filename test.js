@@ -55,12 +55,27 @@ describe("Todo servisi", () => {
         expect(ilktodo.todo).toBeTruthy()
     })
 
+    test("Todo eklendiğinde eklenen todo getTodostan gelmelidir", () =>{
+        const newTodo = {
+            "todo":"Yeni Todo"
+        };
+        addTodo(newTodo);
+        const todolar = getTodos();
+        let existTodo = todolar.some(x => x.todo == newTodo.todo)
+        expect(existTodo).toBeTruthy()
+    })
+
+    
+
     test("Todo silindiğinde 200 dönmelidir", () => {
         const newTodo = {
             "todo": "Yeni Todo"
         };
 
         const status = addTodo(newTodo);
+        // removeTodo("Yeni Todo")
+        // todolar = getTodos()
+        // todoların içinde "Yeni Todo" olmamalı kontolü
         const deletelist = newTodo.deletelist;
 
         expect(status).toEqual("200");
