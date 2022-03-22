@@ -1,7 +1,7 @@
 // todo servisi
 // {"todo": "Bir şeyler yap"} diye veri yüklendiğinde veritabına eklesin
 // todolar getirildiğinde bunun gibi sonuçları dönsün [{"todo": "Bir şeyler yap"}]
-import { addTodo, getTodos } from './index';
+import { addTodo, getTodos, removeTodo } from './index';
 
 describe("Todo servisi", () => {
     test("todo eklendiğinde 200 dönmelidir", () => {
@@ -65,31 +65,31 @@ describe("Todo servisi", () => {
         expect(existTodo).toBeTruthy()
     })
 
-    
-
     test("Todo silindiğinde 200 dönmelidir", () => {
-        const newTodo = {
-            "todo": "Yeni Todo"
-        };
+       
+       const deleteTodoStatus = removeTodo("Yeni Todo")
 
-        const status = addTodo(newTodo);
-        // removeTodo("Yeni Todo")
-        // todolar = getTodos()
-        // todoların içinde "Yeni Todo" olmamalı kontolü
-        const deletelist = newTodo.deletelist;
-
-        expect(status).toEqual("200");
+        expect(deleteTodoStatus).toEqual("200");
     })
 
-    test("Boş Todo silinmek istendiğinde 400 dönmelidir", () => {
-        const newTodo = {
-            "todo": ""
+    test("Boş ve geçersiz Todo silinmek istendiğinde 400 dönmelidir", () => {
+       
+        const bosmodel = {
         };
+        const nullmodel = null;
+        const bosstring= "";
+        const bosstringiki= " ";
 
-        const status = addTodo(newTodo);
-        const deletelist = newTodo.deletelist;
+        const deleteTodoStatusiki = removeTodo(bosmodel);
+        const deleteTodoStatusuc = removeTodo(nullmodel);
+        const deleteTodoStatusdort = removeTodo(bosstring);
+        const deleteTodoStatusbes = removeTodo(bosstringiki);
 
-        expect(status).toEqual("400");
+        expect(deleteTodoStatusiki).toEqual("400");
+        expect(deleteTodoStatusuc).toEqual("400");
+        expect(deleteTodoStatusdort).toEqual("400");
+        expect(deleteTodoStatusbes).toEqual("400");
+    
     })
 
 
