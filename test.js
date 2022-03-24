@@ -42,25 +42,25 @@ describe("Todo servisi", () => {
         expect(status3).toEqual("400");
     })
 
-    test("todolar getirildiğinde dizi dönmelidir", () => {
-        const todolar = getTodos();
+    test("todolar getirildiğinde dizi dönmelidir", async () => {
+        const todolar = await getTodos();
         expect(todolar instanceof Array).toBeTruthy();
 
     })
 
-    test("Eğer bir todo gelirse ilk objesi todo içermelidir", () => {
-        const todolistesi = getTodos();
+    test("Eğer bir todo gelirse ilk objesi todo içermelidir", async () => {
+        const todolistesi = await getTodos();
         const ilktodo = todolistesi[0];
 
         expect(ilktodo.todo).toBeTruthy()
     })
 
-    test("Todo eklendiğinde eklenen todo getTodostan gelmelidir", () =>{
+    test("Todo eklendiğinde eklenen todo getTodostan gelmelidir", async () =>{
         const newTodo = {
             "todo":"Yeni Todo"
         };
         addTodo(newTodo);
-        const todolar = getTodos();
+        const todolar = await getTodos();
         let existTodo = todolar.some(x => x.todo == newTodo.todo)
         expect(existTodo).toBeTruthy()
     })

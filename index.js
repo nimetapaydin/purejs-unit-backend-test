@@ -10,7 +10,7 @@ export function addTodo(addModel) {
      
 }
 
-export function getTodos(){
+export async function getTodos(){
 
     return TodoList
 }
