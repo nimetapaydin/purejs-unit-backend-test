@@ -1,4 +1,6 @@
 import { toggleLocationServicesOnDevice } from "wd/lib/commands";
+const { Client } = require('pg')
+
 const TodoList = [];
 
 export function addTodo(addModel) {
@@ -11,8 +13,13 @@ export function addTodo(addModel) {
 }
 
 export async function getTodos(){
+    const client = new Client()
+    client.connect()
 
-    return TodoList
+    const res = await client.query('SELECT * from todos')
+    await client.end()
+
+    return res.rows;
 }
 
 export function removeTodo(todoName){
