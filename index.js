@@ -12,14 +12,9 @@ export function addTodo(addModel) {
      
 }
 
-export async function getTodos(){
-    const client = new Client()
-    client.connect()
-
-    const res = await client.query('SELECT * from todos')
-    await client.end()
-
-    return res.rows;
+export async function getTodos(repo){
+    const result = await repo.read('SELECT * from todos');
+    return result;
 }
 
 export function removeTodo(todoName){

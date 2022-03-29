@@ -2,6 +2,7 @@
 // {"todo": "Bir şeyler yap"} diye veri yüklendiğinde veritabına eklesin
 // todolar getirildiğinde bunun gibi sonuçları dönsün [{"todo": "Bir şeyler yap"}]
 import { addTodo, getTodos, removeTodo } from './index';
+import Repository from './repository';
 
 describe("Todo servisi", () => {
     test("todo eklendiğinde 200 dönmelidir", () => {
@@ -43,24 +44,28 @@ describe("Todo servisi", () => {
     })
 
     test("todolar getirildiğinde dizi dönmelidir", async () => {
-        const todolar = await getTodos();
+        const repo = new Repository();
+        const todolar = await getTodos(repo);
         expect(todolar instanceof Array).toBeTruthy();
 
     })
 
     test("Eğer bir todo gelirse ilk objesi todo içermelidir", async () => {
-        const todolistesi = await getTodos();
+        const repo = new Repository();
+        const todolistesi = await getTodos(repo);
         const ilktodo = todolistesi[0];
 
         expect(ilktodo.todo).toBeTruthy()
     })
 
     test("Todo eklendiğinde eklenen todo getTodostan gelmelidir", async () =>{
+        const repo = new Repository();
+
         const newTodo = {
             "todo":"Yeni Todo"
         };
         addTodo(newTodo);
-        const todolar = await getTodos();
+        const todolar = await getTodos(repo);
         let existTodo = todolar.some(x => x.todo == newTodo.todo)
         expect(existTodo).toBeTruthy()
     })
