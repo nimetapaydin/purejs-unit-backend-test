@@ -4,6 +4,8 @@
 import { addTodo, getTodos, removeTodo } from './index';
 import Repository from './repository';
 
+jest.mock('./repository');
+
 describe("Todo servisi", () => {
     test("todo eklendiğinde 200 dönmelidir", () => {
         const newTodo = {
@@ -45,6 +47,7 @@ describe("Todo servisi", () => {
 
     test("todolar getirildiğinde dizi dönmelidir", async () => {
         const repo = new Repository();
+        repo.read.mockResolvedValue([]);
         const todolar = await getTodos(repo);
         expect(todolar instanceof Array).toBeTruthy();
 
@@ -52,23 +55,30 @@ describe("Todo servisi", () => {
 
     test("Eğer bir todo gelirse ilk objesi todo içermelidir", async () => {
         const repo = new Repository();
+        repo.read.mockResolvedValue([{
+            todo: '1234',
+        }]);
         const todolistesi = await getTodos(repo);
         const ilktodo = todolistesi[0];
 
         expect(ilktodo.todo).toBeTruthy()
     })
 
-    test("Todo eklendiğinde eklenen todo getTodostan gelmelidir", async () =>{
-        const repo = new Repository();
+    //Bu test servisin testinden çıkıp repository testine döndüğü için
+    // burada kullanılması doğru olmaz
+    // test("Todo eklendiğinde eklenen todo getTodostan gelmelidir", async () =>{
+    //     const repo = new Repository();
 
-        const newTodo = {
-            "todo":"Yeni Todo"
-        };
-        addTodo(newTodo);
-        const todolar = await getTodos(repo);
-        let existTodo = todolar.some(x => x.todo == newTodo.todo)
-        expect(existTodo).toBeTruthy()
-    })
+    //     const newTodo = {
+    //         "todo":"Yeni Todo"
+    //     };
+    //     repo.read.mockResolvedValue([newTodo]);
+
+    //     addTodo(newTodo);
+    //     const todolar = await getTodos(repo);
+    //     let existTodo = todolar.some(x => x.todo == newTodo.todo)
+    //     expect(existTodo).toBeTruthy()
+    // })
 
     test("Todo silindiğinde 200 dönmelidir", () => {
        
