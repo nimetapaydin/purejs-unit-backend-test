@@ -4,6 +4,7 @@
 import Repository from "./repository";
 describe ("Veritabanı servi", ()=> {
     test("Geçersiz sorgular hata vermelidir", () => {
+      
         
     })
 })
