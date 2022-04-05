@@ -9,11 +9,3 @@ describe ("Veritabanı servi", (todo)=> {
         
     })
 })
-
-export function removeTodo(todoName){
-
-    if(!todoName || typeof(todoName)!=="string" || todoName.trim() =="")
-        return "400";
-
-    return "200";
-}
